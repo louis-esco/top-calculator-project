@@ -1,29 +1,40 @@
 // Operators functions
 function add(a, b) {
-    return a + b;
+    const aNum = parseFloat(a);
+    const bNum = parseFloat(b);
+    return aNum + bNum;
 }
 
 function subtract(a, b) {
-    return a - b;
+    const aNum = parseFloat(a);
+    const bNum = parseFloat(b);
+    return aNum - bNum;
 }
 
 function multiply(a, b) {
-    return a * b;
+    const aNum = parseFloat(a);
+    const bNum = parseFloat(b);
+    return aNum * bNum;
 }
 
 function divide(a, b) {
-    return a / b;
+    const aNum = parseFloat(a);
+    const bNum = parseFloat(b);
+    return aNum / bNum;
 }
 
 function operate(operator, a, b) {
+    if (operator === "") {
+        return display.textContent;
+    }
     if (operator === "add") {
-        add(a, b);
-    } else if (operator === "substract") {
-        subtract(a, b);
+        return add(a, b);
+    } else if (operator === "subtract") {
+        return subtract(a, b);
     } else if (operator === "multiply") {
-        multiply(a, b);
+        return multiply(a, b);
     } else if (operator === "divide") {
-        divide(a, b);
+        return divide(a, b);
     }
 }
 
@@ -58,6 +69,7 @@ const display = document.querySelector('.screen');
 function displayDigit(num) {
     if (operator[1] === true || display.textContent === '0') {
         display.textContent = `${num}`;
+        operator[1] = false;
     } else {
         display.textContent += `${num}`;
     }
@@ -103,3 +115,45 @@ function clear() {
 }
 
 clearBtn.addEventListener('click', clear);
+
+// Click on operator
+
+addBtn.addEventListener('click', () => {
+    secondInput = display.textContent;
+    firstInput = operate(operator[0], firstInput, secondInput);
+    display.textContent = `${firstInput}`;
+    operator[0] = "add";
+    operator[1] = true;
+})
+
+subtractBtn.addEventListener('click', () => {
+    secondInput = display.textContent;
+    firstInput = operate(operator[0], firstInput, secondInput);
+    display.textContent = `${firstInput}`;
+    operator[0] = "subtract";
+    operator[1] = true;
+})
+
+multiplyBtn.addEventListener('click', () => {
+    secondInput = display.textContent;
+    firstInput = operate(operator[0], firstInput, secondInput);
+    display.textContent = `${firstInput}`;
+    operator[0] = "multiply";
+    operator[1] = true;
+})
+
+divideBtn.addEventListener('click', () => {
+    secondInput = display.textContent;
+    firstInput = operate(operator[0], firstInput, secondInput);
+    display.textContent = `${firstInput}`;
+    operator[0] = "divide";
+    operator[1] = true;
+})
+
+equalBtn.addEventListener('click', () => {
+    secondInput = display.textContent;
+    firstInput = operate(operator[0], firstInput, secondInput);
+    display.textContent = `${firstInput}`;
+    operator[0] = "";
+
+})
