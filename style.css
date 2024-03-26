@@ -66,18 +66,18 @@ body {
 
 .operator-btn:hover,
 .equal-btn:hover {
-    background-color: #f39e53;
-}
-
-.operator-btn:active,
-.equal-btn:active {
     background-color: #ff6d1f;
 }
 
+.operator-btn:focus,
+.equal-btn:active {
+    background-color: #ecad75;
+}
+
 .clear-btn:hover {
-    background-color: #c46265;
+    background-color: #b33f46;
 }
 
 .clear-btn:active {
-    background-color: #b33f46;
+    background-color: #c46265;
 }
