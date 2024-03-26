@@ -54,6 +54,7 @@ const dotBtn = document.querySelector('#dot');
 
 const display = document.querySelector('.screen');
 
+// Displays digits when clicked
 function displayDigit(num) {
     if (operator[1] === true || display.textContent === '0') {
         display.textContent = `${num}`;
@@ -92,3 +93,13 @@ nineBtn.addEventListener('click', () => {
 zeroBtn.addEventListener('click', () => {
     displayDigit(0);
 })
+
+// Clears the display and resets variables
+function clear() {
+    [operator[0], operator[1]] = ["", false];
+    display.textContent = "0";
+    a = 0;
+    b = 0;
+}
+
+clearBtn.addEventListener('click', clear);
