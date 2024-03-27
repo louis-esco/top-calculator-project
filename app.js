@@ -4,13 +4,13 @@ function operate(operator, a, b) {
         return parseFloat(display.textContent);
     }
     if (operator === "add") {
-        return (a + b).toFixed(3);
+        return Math.round((a + b) * 1000) / 1000;
     } else if (operator === "subtract") {
-        return (a - b).toFixed(3);
+        return Math.round((a - b) * 1000) / 1000;
     } else if (operator === "multiply") {
-        return (a * b).toFixed(3);
+        return Math.round((a * b) * 1000) / 1000;
     } else if (operator === "divide") {
-        return (a / b).toFixed(3);
+        return Math.round((a / b) * 1000) / 1000;
     }
 }
 
