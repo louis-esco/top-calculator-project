@@ -50,10 +50,14 @@ function displayDigit(num) {
             display.textContent = `${num}`;
         }
         operator.selected = false;
-    } else if ((num === '.' && !display.textContent.includes('.')) || num !== '.') {
-        display.textContent += `${num}`;
+    } else if (display.textContent.length < 10) {
+        if (num === '.' && !display.textContent.includes('.') ||
+            num !== '.') {
+            display.textContent += `${num}`;
+        }
     }
 }
+
 
 oneBtn.addEventListener('click', () => {
     displayDigit(1);
