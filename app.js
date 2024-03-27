@@ -1,3 +1,9 @@
+// Basic variables
+let firstInput = 0;
+let secondInput = 0;
+let operator = { value: "", selected: false };
+const display = document.querySelector('.screen');
+
 // Operators functions
 function operate(newOperator) {
     secondInput = parseFloat(display.textContent);
@@ -29,33 +35,23 @@ function displayResult(result) {
     }
 }
 
-// Variables
-let firstInput = 0;
-let secondInput = 0;
-let operator = { value: "", selected: false };
+// Operator buttons actions
+const operatorBtns = document.querySelectorAll('.operator-btn')
 
-const addBtn = document.querySelector('#add');
-const subtractBtn = document.querySelector('#subtract');
-const multiplyBtn = document.querySelector('#multiply');
-const divideBtn = document.querySelector('#divide');
-const equalBtn = document.querySelector('#equal');
+for (let operatorBtn of operatorBtns) {
+    operatorBtn.addEventListener('click', () => {
+        operate(operatorBtn.value);
+    })
+}
 
-const allclearBtn = document.querySelector('#allclear');
-const clearBtn = document.querySelector('#clear');
+// Num buttons actions
+const numBtns = document.querySelectorAll('.num-btn');
 
-const oneBtn = document.querySelector('#one');
-const twoBtn = document.querySelector('#two');
-const threeBtn = document.querySelector('#three');
-const fourBtn = document.querySelector('#four');
-const fiveBtn = document.querySelector('#five');
-const sixBtn = document.querySelector('#six');
-const sevenBtn = document.querySelector('#seven');
-const eightBtn = document.querySelector('#eight');
-const nineBtn = document.querySelector('#nine');
-const zeroBtn = document.querySelector('#zero');
-const dotBtn = document.querySelector('#dot');
-
-const display = document.querySelector('.screen');
+for (let numBtn of numBtns) {
+    numBtn.addEventListener('click', () => {
+        displayDigit(numBtn.value);
+    })
+}
 
 // Displays digits when clicked
 function displayDigit(num) {
@@ -74,41 +70,6 @@ function displayDigit(num) {
     }
 }
 
-
-oneBtn.addEventListener('click', () => {
-    displayDigit(1);
-})
-twoBtn.addEventListener('click', () => {
-    displayDigit(2);
-})
-threeBtn.addEventListener('click', () => {
-    displayDigit(3);
-})
-fourBtn.addEventListener('click', () => {
-    displayDigit(4);
-})
-fiveBtn.addEventListener('click', () => {
-    displayDigit(5);
-})
-sixBtn.addEventListener('click', () => {
-    displayDigit(6);
-})
-sevenBtn.addEventListener('click', () => {
-    displayDigit(7);
-})
-eightBtn.addEventListener('click', () => {
-    displayDigit(8);
-})
-nineBtn.addEventListener('click', () => {
-    displayDigit(9);
-})
-zeroBtn.addEventListener('click', () => {
-    displayDigit(0);
-})
-dotBtn.addEventListener('click', () => {
-    displayDigit('.');
-})
-
 // Clears the display and resets variables
 function allclear() {
     [operator.value, operator.selected] = ["", false];
@@ -126,32 +87,13 @@ function clear() {
     }
 }
 
+const allclearBtn = document.querySelector('#allclear');
+const clearBtn = document.querySelector('#clear');
+
 allclearBtn.addEventListener('click', allclear);
 clearBtn.addEventListener('click', clear)
 
-// Click on operator
-
-addBtn.addEventListener('click', () => {
-    operate("add");
-})
-
-subtractBtn.addEventListener('click', () => {
-    operate("subtract");
-})
-
-multiplyBtn.addEventListener('click', () => {
-    operate("multiply");
-})
-
-divideBtn.addEventListener('click', () => {
-    operate("divide");
-})
-
-equalBtn.addEventListener('click', () => {
-    operate("");
-})
-
-
+// Keyboard support
 document.addEventListener('keyup', (e) => {
     for (let i = 0; i < 10; i++) {
         if (e.key === i.toString()) {
@@ -179,5 +121,4 @@ document.addEventListener('keyup', (e) => {
     if (e.key === '=' || e.key === 'Enter') {
         operate("");
     }
-    console.log(e);
 })

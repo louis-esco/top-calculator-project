@@ -51,7 +51,6 @@ body {
     background-color: #bc4b51;
 }
 
-.equal-btn,
 .operator-btn {
     background-color: #f98838;
 }
@@ -64,13 +63,11 @@ body {
     background-color: #4c6d7d;
 }
 
-.operator-btn:hover,
-.equal-btn:hover {
+.operator-btn:hover {
     background-color: #ff6d1f;
 }
 
-.operator-btn:focus,
-.equal-btn:active {
+.operator-btn:focus {
     background-color: #ecad75;
 }
 
