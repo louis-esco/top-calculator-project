@@ -35,6 +35,7 @@ const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equal');
 
 const allclearBtn = document.querySelector('#allclear');
+const clearBtn = document.querySelector('#clear');
 
 const oneBtn = document.querySelector('#one');
 const twoBtn = document.querySelector('#two');
@@ -110,7 +111,17 @@ function allclear() {
     b = 0;
 }
 
+function clear() {
+    [operator.value, operator.selected] = ["", false];
+    if (display.textContent.length > 2 || display.textContent.length === 2 && !display.textContent.includes('-')) {
+        display.textContent = display.textContent.slice(0, -1);
+    } else {
+        display.textContent = '0';
+    }
+}
+
 allclearBtn.addEventListener('click', allclear);
+clearBtn.addEventListener('click', clear)
 
 // Click on operator
 
