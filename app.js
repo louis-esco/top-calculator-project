@@ -1,16 +1,25 @@
 // Operators functions
 function operate(operator, a, b) {
-    if (operator === "") {
-        return parseFloat(display.textContent);
+    if (operator.value === "" || operator.selected === true) {
+        return displayResult(parseFloat(display.textContent));
     }
-    if (operator === "add") {
-        return Math.round((a + b) * 1000) / 1000;
-    } else if (operator === "subtract") {
-        return Math.round((a - b) * 1000) / 1000;
-    } else if (operator === "multiply") {
-        return Math.round((a * b) * 1000) / 1000;
-    } else if (operator === "divide") {
-        return Math.round((a / b) * 1000) / 1000;
+    if (operator.value === "add") {
+        return displayResult(a + b);
+    } else if (operator.value === "subtract") {
+        return displayResult(a - b);
+    } else if (operator.value === "multiply") {
+        return displayResult(a * b);
+    } else if (operator.value === "divide") {
+        return displayResult(a / b);
+    }
+}
+
+function displayResult(result) {
+    const roundedResult = Math.round(result * 1000) / 1000;
+    if (roundedResult.toString().length > 10) {
+        return roundedResult.toExponential(4);
+    } else {
+        return roundedResult;
     }
 }
 
@@ -107,7 +116,7 @@ clearBtn.addEventListener('click', clear);
 
 addBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator.value, firstInput, secondInput);
+    firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "add";
     operator.selected = true;
@@ -115,7 +124,7 @@ addBtn.addEventListener('click', () => {
 
 subtractBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator.value, firstInput, secondInput);
+    firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "subtract";
     operator.selected = true;
@@ -123,7 +132,7 @@ subtractBtn.addEventListener('click', () => {
 
 multiplyBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator.value, firstInput, secondInput);
+    firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "multiply";
     operator.selected = true;
@@ -131,7 +140,7 @@ multiplyBtn.addEventListener('click', () => {
 
 divideBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator.value, firstInput, secondInput);
+    firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "divide";
     operator.selected = true;
@@ -139,7 +148,7 @@ divideBtn.addEventListener('click', () => {
 
 equalBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator.value, firstInput, secondInput);
+    firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "";
 
