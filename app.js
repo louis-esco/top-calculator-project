@@ -151,5 +151,6 @@ equalBtn.addEventListener('click', () => {
     firstInput = operate(operator, firstInput, secondInput);
     display.textContent = `${firstInput}`;
     operator.value = "";
+    operator.selected = true;
 
 })
