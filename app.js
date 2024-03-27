@@ -17,7 +17,7 @@ function operate(operator, a, b) {
 // Variables
 let firstInput = 0;
 let secondInput = 0;
-let operator = ["", false];
+let operator = { value: "", selected: false };
 
 const addBtn = document.querySelector('#add');
 const subtractBtn = document.querySelector('#subtract');
@@ -43,9 +43,9 @@ const display = document.querySelector('.screen');
 
 // Displays digits when clicked
 function displayDigit(num) {
-    if (operator[1] === true || display.textContent === '0') {
+    if (operator.selected === true || display.textContent === '0') {
         display.textContent = `${num}`;
-        operator[1] = false;
+        operator.selected = false;
     } else {
         display.textContent += `${num}`;
     }
@@ -84,7 +84,7 @@ zeroBtn.addEventListener('click', () => {
 
 // Clears the display and resets variables
 function clear() {
-    [operator[0], operator[1]] = ["", false];
+    [operator.value, operator.selected] = ["", false];
     display.textContent = "0";
     a = 0;
     b = 0;
@@ -96,40 +96,40 @@ clearBtn.addEventListener('click', clear);
 
 addBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator[0], firstInput, secondInput);
+    firstInput = operate(operator.value, firstInput, secondInput);
     display.textContent = `${firstInput}`;
-    operator[0] = "add";
-    operator[1] = true;
+    operator.value = "add";
+    operator.selected = true;
 })
 
 subtractBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator[0], firstInput, secondInput);
+    firstInput = operate(operator.value, firstInput, secondInput);
     display.textContent = `${firstInput}`;
-    operator[0] = "subtract";
-    operator[1] = true;
+    operator.value = "subtract";
+    operator.selected = true;
 })
 
 multiplyBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator[0], firstInput, secondInput);
+    firstInput = operate(operator.value, firstInput, secondInput);
     display.textContent = `${firstInput}`;
-    operator[0] = "multiply";
-    operator[1] = true;
+    operator.value = "multiply";
+    operator.selected = true;
 })
 
 divideBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator[0], firstInput, secondInput);
+    firstInput = operate(operator.value, firstInput, secondInput);
     display.textContent = `${firstInput}`;
-    operator[0] = "divide";
-    operator[1] = true;
+    operator.value = "divide";
+    operator.selected = true;
 })
 
 equalBtn.addEventListener('click', () => {
     secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator[0], firstInput, secondInput);
+    firstInput = operate(operator.value, firstInput, secondInput);
     display.textContent = `${firstInput}`;
-    operator[0] = "";
+    operator.value = "";
 
 })
