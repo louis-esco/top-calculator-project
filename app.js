@@ -1,17 +1,23 @@
 // Operators functions
-function operate(operator, a, b) {
+function operate(newOperator) {
+    secondInput = parseFloat(display.textContent);
     if (operator.value === "" || operator.selected === true) {
-        return displayResult(parseFloat(display.textContent));
+        firstInput = displayResult(parseFloat(display.textContent));
+    } else if (operator.selected === false) {
+        if (operator.value === "add") {
+            firstInput = displayResult(firstInput + secondInput);
+        } else if (operator.value === "subtract") {
+            firstInput = displayResult(firstInput - secondInput);
+        } else if (operator.value === "multiply") {
+            firstInput = displayResult(firstInput * secondInput);
+        } else if (operator.value === "divide") {
+            firstInput = displayResult(firstInput / secondInput);
+        }
     }
-    if (operator.value === "add") {
-        return displayResult(a + b);
-    } else if (operator.value === "subtract") {
-        return displayResult(a - b);
-    } else if (operator.value === "multiply") {
-        return displayResult(a * b);
-    } else if (operator.value === "divide") {
-        return displayResult(a / b);
-    }
+    display.textContent = `${firstInput}`;
+    operator.value = newOperator;
+    operator.selected = true;
+    return firstInput;
 }
 
 function displayResult(result) {
@@ -126,42 +132,52 @@ clearBtn.addEventListener('click', clear)
 // Click on operator
 
 addBtn.addEventListener('click', () => {
-    secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator, firstInput, secondInput);
-    display.textContent = `${firstInput}`;
-    operator.value = "add";
-    operator.selected = true;
+    operate("add");
 })
 
 subtractBtn.addEventListener('click', () => {
-    secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator, firstInput, secondInput);
-    display.textContent = `${firstInput}`;
-    operator.value = "subtract";
-    operator.selected = true;
+    operate("subtract");
 })
 
 multiplyBtn.addEventListener('click', () => {
-    secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator, firstInput, secondInput);
-    display.textContent = `${firstInput}`;
-    operator.value = "multiply";
-    operator.selected = true;
+    operate("multiply");
 })
 
 divideBtn.addEventListener('click', () => {
-    secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator, firstInput, secondInput);
-    display.textContent = `${firstInput}`;
-    operator.value = "divide";
-    operator.selected = true;
+    operate("divide");
 })
 
 equalBtn.addEventListener('click', () => {
-    secondInput = parseFloat(display.textContent);
-    firstInput = operate(operator, firstInput, secondInput);
-    display.textContent = `${firstInput}`;
-    operator.value = "";
-    operator.selected = true;
+    operate("");
+})
 
+
+document.addEventListener('keyup', (e) => {
+    for (let i = 0; i < 10; i++) {
+        if (e.key === i.toString()) {
+            displayDigit(i);
+        }
+    }
+    if (e.key === '.') {
+        displayDigit('.');
+    }
+    if (e.key === 'Backspace') {
+        clear();
+    }
+    if (e.key === '*') {
+        operate("multiply");
+    }
+    if (e.key === '/') {
+        operate("divide");
+    }
+    if (e.key === '+') {
+        operate("add");
+    }
+    if (e.key === '-') {
+        operate("subtract");
+    }
+    if (e.key === '=' || e.key === 'Enter') {
+        operate("");
+    }
+    console.log(e);
 })
