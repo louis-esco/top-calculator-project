@@ -44,9 +44,13 @@ const display = document.querySelector('.screen');
 // Displays digits when clicked
 function displayDigit(num) {
     if (operator.selected === true || display.textContent === '0') {
-        display.textContent = `${num}`;
+        if (num === '.') {
+            display.textContent = '0.';
+        } else {
+            display.textContent = `${num}`;
+        }
         operator.selected = false;
-    } else {
+    } else if ((num === '.' && !display.textContent.includes('.')) || num !== '.') {
         display.textContent += `${num}`;
     }
 }
@@ -80,6 +84,9 @@ nineBtn.addEventListener('click', () => {
 })
 zeroBtn.addEventListener('click', () => {
     displayDigit(0);
+})
+dotBtn.addEventListener('click', () => {
+    displayDigit('.');
 })
 
 // Clears the display and resets variables
