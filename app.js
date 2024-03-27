@@ -34,7 +34,7 @@ const multiplyBtn = document.querySelector('#multiply');
 const divideBtn = document.querySelector('#divide');
 const equalBtn = document.querySelector('#equal');
 
-const clearBtn = document.querySelector('#clear');
+const allclearBtn = document.querySelector('#allclear');
 
 const oneBtn = document.querySelector('#one');
 const twoBtn = document.querySelector('#two');
@@ -103,14 +103,14 @@ dotBtn.addEventListener('click', () => {
 })
 
 // Clears the display and resets variables
-function clear() {
+function allclear() {
     [operator.value, operator.selected] = ["", false];
     display.textContent = "0";
     a = 0;
     b = 0;
 }
 
-clearBtn.addEventListener('click', clear);
+allclearBtn.addEventListener('click', allclear);
 
 // Click on operator
 
